@@ -8,39 +8,53 @@
 
     <ImageView
         android:id="@+id/logoView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
+        android:layout_width="156dp"
+        android:layout_height="151dp"
         android:src="@mipmap/ic_vtb_launcher_round"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline" />
 
     <TextView
+        android:id="@+id/logoText"
         style="@style/TextAppearance.MaterialComponents.Headline4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="16dp"
-        android:text="VTB KIDS"
-        app:layout_constraintStart_toEndOf="@+id/logoView"
-        app:layout_constraintTop_toTopOf="@+id/guideline" />
+        android:layout_marginTop="8dp"
+        android:text="Junior"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logoView" />
 
     <TextView
+        android:id="@+id/quote"
         style="@style/TextAppearance.AppCompat.Large"
         android:layout_width="227dp"
         android:layout_height="54dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="128dp"
         android:text="Nosce te ipsum."
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logoView" />
+        app:layout_constraintTop_toBottomOf="@+id/logoText" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="293dp" />
+        app:layout_constraintGuide_begin="244dp" />
+
+    <TextView
+        android:id="@+id/author"
+        style="@style/TextAppearance.AppCompat.Large"
+        android:layout_width="88dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="24dp"
+        android:text="\@Lorem"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.284"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/quote" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
