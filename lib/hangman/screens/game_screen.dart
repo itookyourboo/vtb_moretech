@@ -246,7 +246,8 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
     }
     return WillPopScope(
       onWillPop: () {
-        return Future(() => false);
+        Navigator.pop(context);
+        return Future(() => true);
       },
       child: Scaffold(
         backgroundColor: blue40,
