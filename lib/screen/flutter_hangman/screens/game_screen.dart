@@ -137,8 +137,8 @@ class _GameScreenState extends State<GameScreen> {
           Alert(
               style: kGameOverAlertStyle,
               context: context,
-              title: "Game Over!",
-              desc: "Your score is $wordCount",
+              title: "Игра закончена!",
+              desc: "Твой результат: $wordCount",
               buttons: [
                 DialogButton(
 //                  width: 20,
@@ -201,6 +201,7 @@ class _GameScreenState extends State<GameScreen> {
           type: AlertType.success,
           title: word,
 //          desc: "You guessed it right!",
+          desc: "- это ",
           buttons: [
             DialogButton(
               radius: BorderRadius.circular(10),
@@ -307,7 +308,7 @@ class _GameScreenState extends State<GameScreen> {
                             ),
                             Container(
                               child: IconButton(
-                                tooltip: 'Hint',
+                                tooltip: 'Подсказка',
                                 iconSize: 39,
                                 icon: Icon(MdiIcons.lightbulb),
                                 highlightColor: Colors.transparent,
