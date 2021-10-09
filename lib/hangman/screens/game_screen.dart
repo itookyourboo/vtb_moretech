@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:moretech_vtb/assets/vtb_ui_colors_dark.dart';
 import 'package:moretech_vtb/assets/vtb_ui_typography.dart';
 import 'package:moretech_vtb/hangman/utilities/alphabet.dart';
@@ -9,7 +10,6 @@ import 'package:moretech_vtb/screen/games_page.dart';
 import 'package:moretech_vtb/screen/main_screen.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'dart:math';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class HangmanGameScreen extends StatefulWidget {
   HangmanGameScreen({required this.hangmanObject});
@@ -151,7 +151,8 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
 //                  width: 20,
                   onPressed: () => returnHomePage(),
                   child: const Icon(
-                    MdiIcons.home,
+                    Icons.home,
+                    color: Colors.white,
                     size: 30.0,
                   ),
 //                  width: 90,
@@ -164,7 +165,7 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
                     newGame();
                     Navigator.pop(context);
                   },
-                  child: Icon(MdiIcons.refresh, size: 30.0),
+                  child: const Icon(Icons.refresh,color: Colors.white, size: 30.0),
 //                  width: 90,
                   color: DialogButtonColor,
 //                  height: 20,
@@ -282,7 +283,7 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
                                         tooltip: 'Lives',
                                         splashColor: Colors.white,
                                         iconSize: 39,
-                                        icon: Icon(MdiIcons.heart),
+                                        icon: Icon(MdiIcons.heart, color: Colors.white),
                                         onPressed: () {},
                                       ),
                                     ),
@@ -320,7 +321,7 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
                               child: IconButton(
                                 tooltip: 'Подсказка',
                                 iconSize: 39,
-                                icon: Icon(MdiIcons.lightbulb),
+                                icon: Icon(MdiIcons.lightbulb, color: Colors.white),
                                 splashColor: Colors.white,
                                 onPressed: hintStatus
                                     ? () {
