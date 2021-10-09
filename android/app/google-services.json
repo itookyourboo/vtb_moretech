@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "327543394850",
+    "firebase_url": "https://vtb-moretech-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "vtb-moretech",
+    "storage_bucket": "vtb-moretech.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:327543394850:android:9a0b3edb96c27c3817f07b",
+        "android_client_info": {
+          "package_name": "com.example.moretech_vtb"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "327543394850-ct96g0pgql55g5ontejqa27emivqns7r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzEk4AxPq7UxNMc0uXmxk3c3WiJQIsTEg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "327543394850-ct96g0pgql55g5ontejqa27emivqns7r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

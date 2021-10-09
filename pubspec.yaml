@@ -44,6 +44,9 @@ dependencies:
   animated_text_kit: ^4.2.1
   flutter_native_splash: ^1.2.4
   url_launcher: ^6.0.12
+  firebase_core: ^0.4.0+9
+  # Add the dependency for the FlutterFire plugin for Google Analytics
+  firebase_analytics: ^5.0.2
 
 dev_dependencies:
   flutter_test:

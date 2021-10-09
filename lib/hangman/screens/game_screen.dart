@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -10,6 +11,7 @@ import 'package:moretech_vtb/screen/games_page.dart';
 import 'package:moretech_vtb/screen/main_screen.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'dart:math';
+import 'package:firebase_analytics/observer.dart';
 
 import 'package:url_launcher/url_launcher.dart';
 
@@ -38,7 +40,16 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
   bool finishedGame = false;
   bool resetGame = false;
 
+  Future<void> logStart() async {
+    await FirebaseAnalytics().logLevelStart(levelName: "game");
+  }
+
+  Future<void> logUpdate() async {
+    await FirebaseAnalytics().logPostScore(score: wordCount, level: hangState, character: "game");
+  }
+
   void newGame() {
+    logStart();
     setState(() {
       widget.hangmanObject.resetWords();
       russianAlphabet = Alphabet();
@@ -60,7 +71,7 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
       child: Center(
         child: TextButton(
           child: Text(russianAlphabet.alphabet[index].toUpperCase(),
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
               ),
           ),
@@ -111,6 +122,7 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
   }
 
   void wordPress(int index) {
+    logUpdate();
     if (buttonStatus[index] == false) return;
 
     if (lives == 0) {
