@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:moretech_vtb/assets/vtb_ui_colors_dark.dart';
+import 'package:moretech_vtb/assets/vtb_ui_typography.dart';
 import 'package:moretech_vtb/screen/flutter_hangman/screens/home_screen.dart';
 import 'package:moretech_vtb/screen/flutter_hangman/utilities/alphabet.dart';
 import 'package:moretech_vtb/screen/flutter_hangman/components/word_button.dart';
@@ -285,12 +287,7 @@ class _GameScreenState extends State<GameScreen> {
                                               lives.toString() == "1"
                                                   ? "I"
                                                   : lives.toString(),
-                                              style: TextStyle(
-                                                color: Color(0xFF2C1E68),
-                                                fontSize: 20,
-                                                fontWeight: FontWeight.bold,
-                                                fontFamily: 'PatrickHand',
-                                              ),
+                                              style: title2,
                                             ),
                                           ),
                                         ),

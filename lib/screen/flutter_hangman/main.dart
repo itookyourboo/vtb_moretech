@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:moretech_vtb/assets/vtb_ui_colors_dark.dart';
 import 'package:moretech_vtb/screen/flutter_hangman/screens/home_screen.dart';
 import 'package:moretech_vtb/screen/flutter_hangman/utilities/constants.dart';
 import 'package:moretech_vtb/screen/flutter_hangman/screens/score_screen.dart';
@@ -30,7 +31,7 @@ class HangmanApp extends StatelessWidget {
             color: Colors.white,
           ),
         ),
-        scaffoldBackgroundColor: Color(0xFF421b9b),
+        scaffoldBackgroundColor: blue30,
         textTheme: Theme.of(context).textTheme.apply(fontFamily: 'PatrickHand'),
       ),
       initialRoute: 'homePage',
