@@ -61,8 +61,8 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
               ),
           ),
           style: buttonStyle,
-          onPressed: () {
-            buttonStatus[index] ? () => wordPress(index) : null;
+          onPressed: (){
+            wordPress(index);
           }
         ),
       ),
