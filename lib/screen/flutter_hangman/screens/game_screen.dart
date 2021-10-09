@@ -54,7 +54,11 @@ class _GameScreenState extends State<GameScreen> {
       padding: EdgeInsets.symmetric(horizontal: 3.5, vertical: 6.0),
       child: Center(
         child: TextButton(
-          child: Text(russianAlphabet.alphabet[index].toUpperCase()),
+          child: Text(russianAlphabet.alphabet[index].toUpperCase(),
+              style: TextStyle(
+                color: Colors.white
+              ),
+          ),
           onPressed:
             buttonStatus[index] ? () => wordPress(index) : null,
         ),
@@ -246,6 +250,7 @@ class _GameScreenState extends State<GameScreen> {
         return Future(() => false);
       },
       child: Scaffold(
+        backgroundColor: blue40,
         body: SafeArea(
           child: Column(
             children: <Widget>[
@@ -266,8 +271,7 @@ class _GameScreenState extends State<GameScreen> {
                                       padding: EdgeInsets.only(top: 0.5),
                                       child: IconButton(
                                         tooltip: 'Lives',
-                                        highlightColor: Colors.transparent,
-                                        splashColor: Colors.transparent,
+                                        splashColor: Colors.white,
                                         iconSize: 39,
                                         icon: Icon(MdiIcons.heart),
                                         onPressed: () {},
@@ -308,8 +312,7 @@ class _GameScreenState extends State<GameScreen> {
                                 tooltip: 'Подсказка',
                                 iconSize: 39,
                                 icon: Icon(MdiIcons.lightbulb),
-                                highlightColor: Colors.transparent,
-                                splashColor: Colors.transparent,
+                                splashColor: Colors.white,
                                 onPressed: hintStatus
                                     ? () {
                                         int rand = Random()
@@ -331,7 +334,7 @@ class _GameScreenState extends State<GameScreen> {
                           alignment: Alignment.bottomCenter,
                           child: FittedBox(
                             child: Image.asset(
-                              'images/$hangState.png',
+                              'assets/images/$hangState.png',
                               height: 1001,
                               width: 991,
                               gaplessPlayback: true,
