@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:moretech_vtb/assets/vtb_ui_colors_light.dart';
+import 'package:moretech_vtb/assets/vtb_ui_typography.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+
+TextStyle alertTitleStyle = largeTitle2.copyWith(
+  color: Colors.white
+);
+
+TextStyle alertDescStyle = subtitle1.copyWith(
+    color: Colors.white
+);
 
 var SuccessAlertStyle = AlertStyle(
   animationType: AnimationType.grow,
@@ -11,12 +20,8 @@ var SuccessAlertStyle = AlertStyle(
   alertBorder: RoundedRectangleBorder(
     borderRadius: BorderRadius.circular(10.0),
   ),
-  titleStyle: TextStyle(
-    color: Color(0xFF00e676),
-    fontWeight: FontWeight.bold,
-    fontSize: 30.0,
-    letterSpacing: 1.5,
-  ),
+  titleStyle: alertTitleStyle,
+  descStyle: alertDescStyle,
 );
 
 var GameOverAlertStyle = AlertStyle(
@@ -28,18 +33,8 @@ var GameOverAlertStyle = AlertStyle(
   alertBorder: RoundedRectangleBorder(
     borderRadius: BorderRadius.circular(10.0),
   ),
-  titleStyle: const TextStyle(
-    color: Colors.red,
-    fontWeight: FontWeight.bold,
-    fontSize: 30.0,
-    letterSpacing: 1.5,
-  ),
-  descStyle: const TextStyle(
-    color: Colors.white,
-    fontWeight: FontWeight.bold,
-    fontSize: 25.0,
-    letterSpacing: 1.5,
-  ),
+  titleStyle: alertTitleStyle.copyWith(color: Colors.red),
+  descStyle: alertDescStyle,
 );
 
 var FailedAlertStyle = AlertStyle(
@@ -51,12 +46,8 @@ var FailedAlertStyle = AlertStyle(
   alertBorder: RoundedRectangleBorder(
     borderRadius: BorderRadius.circular(10.0),
   ),
-  titleStyle: const TextStyle(
-    color: Colors.red,
-    fontWeight: FontWeight.bold,
-    fontSize: 30.0,
-    letterSpacing: 1.5,
-  ),
+  titleStyle: alertTitleStyle.copyWith(color: Colors.red),
+  descStyle: alertDescStyle,
 );
 
 

@@ -24,6 +24,7 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
   int lives = 3;
   Alphabet russianAlphabet = Alphabet();
   late String word;
+  late String meaning;
   late String hiddenWord;
   List<String> wordList = [];
   List<int> hintLetters = [];
@@ -90,6 +91,10 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
     word = widget.hangmanObject.getWord();
 //    print
     print('this is word ' + word);
+    if (word != '') {
+      meaning = widget.hangmanObject.getMeaning();
+    }
+    // print(widget.hangmanObject.getMeaning(word));
     if (word.length != 0) {
       hiddenWord = widget.hangmanObject.getHiddenWord(word.length);
     } else {
@@ -171,12 +176,13 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
             style: FailedAlertStyle,
             type: AlertType.error,
             title: word,
-//            desc: "You Lost!",
+            desc: meaning,
             buttons: [
               DialogButton(
                 radius: BorderRadius.circular(10),
-                child: Icon(
-                  MdiIcons.arrowRightThick,
+                child: const Icon(
+                  Icons.arrow_forward_rounded,
+                  color: Colors.white,
                   size: 30.0,
                 ),
                 onPressed: () {
@@ -203,14 +209,20 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
           type: AlertType.success,
           title: word,
 //          desc: "You guessed it right!",
-          desc: "- это ",
+          desc: meaning,
           buttons: [
             DialogButton(
               radius: BorderRadius.circular(10),
               child: const Icon(
-                MdiIcons.arrowRightThick,
+                Icons.arrow_forward_rounded,
+                color: Colors.white,
                 size: 30.0,
               ),
+              // child: const Icon(
+              //   MdiIcons.arrowRightThick,
+              //   color: Colors.white,
+              //   size: 30.0,
+              // ),
               onPressed: () {
                 setState(() {
                   wordCount += 1;
