@@ -22,7 +22,7 @@ class HangmanWords {
     wordCounter += 1;
     var rand = Random();
     int wordLength = _words.length;
-    int randNumber = rand.nextInt(wordLength);
+    int randNumber = 1 + rand.nextInt(wordLength - 1);
     bool notUnique = true;
     if (wordCounter - 1 == _words.length) {
       notUnique = false;
