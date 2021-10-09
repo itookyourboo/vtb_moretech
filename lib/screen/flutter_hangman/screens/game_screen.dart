@@ -12,7 +12,7 @@ import 'package:moretech_vtb/screen/flutter_hangman/utilities/score_db.dart' as 
 import 'package:moretech_vtb/screen/flutter_hangman/utilities/user_scores.dart';
 
 class GameScreen extends StatefulWidget {
-  GameScreen({@required this.hangmanObject});
+  GameScreen({required this.hangmanObject});
 
   final HangmanWords hangmanObject;
 
@@ -24,12 +24,12 @@ class _GameScreenState extends State<GameScreen> {
   final database = score_database.openDB();
   int lives = 5;
   Alphabet englishAlphabet = Alphabet();
-  String word;
-  String hiddenWord;
+  late String word;
+  late String hiddenWord;
   List<String> wordList = [];
   List<int> hintLetters = [];
-  List<bool> buttonStatus;
-  bool hintStatus;
+  late List<bool> buttonStatus;
+  late bool hintStatus;
   int hangState = 0;
   int wordCount = 0;
   bool finishedGame = false;
@@ -51,9 +51,10 @@ class _GameScreenState extends State<GameScreen> {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 3.5, vertical: 6.0),
       child: Center(
-        child: WordButton(
-          buttonTitle: englishAlphabet.alphabet[index].toUpperCase(),
-          onPress: buttonStatus[index] ? () => wordPress(index) : null,
+        child: TextButton(
+          child: Text(englishAlphabet.alphabet[index].toUpperCase()),
+          onPressed:
+            buttonStatus[index] ? () => wordPress(index) : null,
         ),
       ),
     );

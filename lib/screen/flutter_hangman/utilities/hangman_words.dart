@@ -37,6 +37,7 @@ class HangmanWords {
         randNumber = rand.nextInt(wordLength);
       }
     }
+    return '';
   }
 
   String getHiddenWord(int wordLength) {

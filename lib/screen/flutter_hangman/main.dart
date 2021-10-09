@@ -5,10 +5,10 @@ import 'package:moretech_vtb/screen/flutter_hangman/utilities/constants.dart';
 import 'package:moretech_vtb/screen/flutter_hangman/screens/score_screen.dart';
 
 void main() {
-  return runApp(MyApp());
+  return runApp(HangmanApp());
 }
 
-class MyApp extends StatelessWidget {
+class HangmanApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIOverlays([]);
