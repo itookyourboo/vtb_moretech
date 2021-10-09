@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:moretech_vtb/screen/flutter_hangman/utilities/user_scores.dart';
+import 'package:moretech_vtb/hangman/utilities/user_scores.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 

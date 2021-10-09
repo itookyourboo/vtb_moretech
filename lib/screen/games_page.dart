@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:moretech_vtb/assets/vtb_ui_typography.dart';
-import 'package:moretech_vtb/screen/flutter_hangman/screens/game_screen.dart';
-import 'package:moretech_vtb/screen/flutter_hangman/screens/home_screen.dart';
-
-import 'flutter_hangman/utilities/hangman_words.dart';
+import 'package:moretech_vtb/assets/vtb_ui_typography.dart' as VtbTypography;
+import 'package:moretech_vtb/hangman/screens/game_screen.dart';
+import 'package:moretech_vtb/hangman/utilities/hangman_words.dart';
 
 class GamesPage extends StatelessWidget {
   const GamesPage({Key? key}) : super(key: key);
@@ -16,21 +14,21 @@ class GamesPage extends StatelessWidget {
     return GridView.count(
         crossAxisCount: 2,
         children: [
-          GameCard(text: 'Три в ряд', routeScreen: GameScreen(
+          GameCard(text: 'Три в ряд', routeScreen: HangmanGameScreen(
               hangmanObject: HangmanWords()
           )),
-          GameCard(text: 'Комбинатор', routeScreen: GameScreen(
+          GameCard(text: 'Комбинатор', routeScreen: HangmanGameScreen(
               hangmanObject: HangmanWords()
           )),
-          GameCard(text: 'Матрица', routeScreen: GameScreen(
+          GameCard(text: 'Матрица', routeScreen: HangmanGameScreen(
               hangmanObject: HangmanWords()
           )),
-          GameCard(text: 'Викторина', routeScreen: GameScreen(
+          GameCard(text: 'Викторина', routeScreen: HangmanGameScreen(
               hangmanObject: HangmanWords()
           )),
           GameCard(
             text: 'Виселица',
-            routeScreen: GameScreen(
+            routeScreen: HangmanGameScreen(
               hangmanObject: hangmanWords
             )
           )
@@ -51,7 +49,7 @@ class GameCard extends StatelessWidget {
         child: Card(
           child: InkWell(
               child: Center(
-                  child: Text(text, style: headline)
+                  child: Text(text, style: VtbTypography.headline)
               ),
               onTap: () {
                 Navigator.push(

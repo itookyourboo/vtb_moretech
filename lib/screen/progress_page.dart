@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moretech_vtb/assets/vtb_ui_typography.dart';
+import 'package:moretech_vtb/assets/vtb_ui_typography.dart' as VtbTypography;
 
 class ProgressPage extends StatelessWidget {
   const ProgressPage({Key? key}) : super(key: key);
@@ -9,7 +9,7 @@ class ProgressPage extends StatelessWidget {
     return const Center(
       child: Text(
         'Progress Page',
-        style: largeTitle1,
+        style: VtbTypography.largeTitle1,
       )
     );
   }

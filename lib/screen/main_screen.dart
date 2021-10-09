@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:moretech_vtb/assets/vtb_ui_colors_dark.dart';
+import 'package:moretech_vtb/assets/vtb_ui_colors_dark.dart' as VtbColors;
 import 'package:moretech_vtb/screen/games_page.dart';
 import 'package:moretech_vtb/screen/profile_page.dart';
 import 'package:moretech_vtb/screen/progress_page.dart';
@@ -51,7 +51,7 @@ class _MainScreenState extends State<MainScreen> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: blue70,
+        selectedItemColor: VtbColors.blue70,
         onTap: _onItemTapped,
       ),
     );

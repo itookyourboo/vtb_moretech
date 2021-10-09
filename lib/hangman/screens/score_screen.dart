@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:moretech_vtb/screen/flutter_hangman/utilities/constants.dart';
+import 'package:moretech_vtb/hangman/utilities/constants.dart';
 import 'package:date_format/date_format.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-class ScoreScreen extends StatelessWidget {
+class HangmanScoreScreen extends StatelessWidget {
   final query;
 
-  ScoreScreen({this.query});
+  HangmanScoreScreen({this.query});
 
   List<TableRow> createRow(var query) {
     query.sort((a, b) => b.toString().compareTo(a.toString()));

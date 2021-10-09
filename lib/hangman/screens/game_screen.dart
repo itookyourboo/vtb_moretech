@@ -2,27 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:moretech_vtb/assets/vtb_ui_colors_dark.dart';
 import 'package:moretech_vtb/assets/vtb_ui_typography.dart';
-import 'package:moretech_vtb/screen/flutter_hangman/screens/home_screen.dart';
-import 'package:moretech_vtb/screen/flutter_hangman/utilities/alphabet.dart';
-import 'package:moretech_vtb/screen/flutter_hangman/components/word_button.dart';
-import 'package:moretech_vtb/screen/flutter_hangman/utilities/constants.dart';
-import 'package:moretech_vtb/screen/flutter_hangman/utilities/hangman_words.dart';
+import 'package:moretech_vtb/hangman/screens/home_screen.dart';
+import 'package:moretech_vtb/hangman/utilities/alphabet.dart';
+import 'package:moretech_vtb/hangman/utilities/constants.dart';
+import 'package:moretech_vtb/hangman/utilities/hangman_words.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'dart:math';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:moretech_vtb/screen/flutter_hangman/utilities/score_db.dart' as score_database;
-import 'package:moretech_vtb/screen/flutter_hangman/utilities/user_scores.dart';
+import 'package:moretech_vtb/hangman/utilities/score_db.dart' as score_database;
+import 'package:moretech_vtb/hangman/utilities/user_scores.dart';
 
-class GameScreen extends StatefulWidget {
-  GameScreen({required this.hangmanObject});
+class HangmanGameScreen extends StatefulWidget {
+  HangmanGameScreen({required this.hangmanObject});
 
   final HangmanWords hangmanObject;
 
   @override
-  _GameScreenState createState() => _GameScreenState();
+  _HangmanGameScreenState createState() => _HangmanGameScreenState();
 }
 
-class _GameScreenState extends State<GameScreen> {
+class _HangmanGameScreenState extends State<HangmanGameScreen> {
   final database = score_database.openDB();
   int lives = 5;
   Alphabet russianAlphabet = Alphabet();
@@ -69,7 +68,7 @@ class _GameScreenState extends State<GameScreen> {
   void returnHomePage() {
     Navigator.pushAndRemoveUntil(
       context,
-      MaterialPageRoute(builder: (context) => HomeScreen()),
+      MaterialPageRoute(builder: (context) => HangmanHomeScreen()),
       ModalRoute.withName('homePage'),
     );
   }

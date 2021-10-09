@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:moretech_vtb/assets/vtb_ui_colors_dark.dart';
-import 'package:moretech_vtb/screen/flutter_hangman/screens/home_screen.dart';
-import 'package:moretech_vtb/screen/flutter_hangman/utilities/constants.dart';
-import 'package:moretech_vtb/screen/flutter_hangman/screens/score_screen.dart';
+import 'package:moretech_vtb/hangman/screens/home_screen.dart';
+import 'package:moretech_vtb/hangman/utilities/constants.dart';
+import 'package:moretech_vtb/hangman/screens/score_screen.dart';
 
 void main() {
   return runApp(HangmanApp());
@@ -36,8 +36,8 @@ class HangmanApp extends StatelessWidget {
       ),
       initialRoute: 'homePage',
       routes: {
-        'homePage': (context) => HomeScreen(),
-        'scorePage': (context) => ScoreScreen(),
+        'homePage': (context) => HangmanHomeScreen(),
+        'scorePage': (context) => HangmanScoreScreen(),
       },
     );
   }

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:moretech_vtb/screen/flutter_hangman/screens/score_screen.dart';
-import 'package:moretech_vtb/screen/flutter_hangman/utilities/score_db.dart' as score_database;
+import 'package:moretech_vtb/hangman/screens/score_screen.dart';
+import 'package:moretech_vtb/hangman/utilities/score_db.dart' as score_database;
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
-class LoadingScreen extends StatefulWidget {
+class HangmanLoadingScreen extends StatefulWidget {
   @override
-  _LoadingScreenState createState() => _LoadingScreenState();
+  _HangmanLoadingScreenState createState() => _HangmanLoadingScreenState();
 }
 
-class _LoadingScreenState extends State<LoadingScreen> {
+class _HangmanLoadingScreenState extends State<HangmanLoadingScreen> {
   @override
   void initState() {
     super.initState();
@@ -22,7 +22,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
       context,
       MaterialPageRoute(
         builder: (context) {
-          return ScoreScreen(
+          return HangmanScoreScreen(
             query: queryResult,
           );
         },

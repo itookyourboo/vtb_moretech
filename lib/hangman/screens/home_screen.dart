@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:moretech_vtb/screen/flutter_hangman/components/action_button.dart';
-import 'package:moretech_vtb/screen/flutter_hangman/utilities/hangman_words.dart';
+import 'package:moretech_vtb/hangman/components/action_button.dart';
+import 'package:moretech_vtb/hangman/utilities/hangman_words.dart';
 import 'game_screen.dart';
 import 'loading_screen.dart';
 
-class HomeScreen extends StatefulWidget {
+class HangmanHomeScreen extends StatefulWidget {
   final HangmanWords hangmanWords = HangmanWords();
 
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _HangmanHomeScreenState createState() => _HangmanHomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HangmanHomeScreenState extends State<HangmanHomeScreen> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -60,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => GameScreen(
+                            builder: (context) => HangmanGameScreen(
                               hangmanObject: widget.hangmanWords,
                             ),
                           ),
@@ -80,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => LoadingScreen(),
+                            builder: (context) => HangmanLoadingScreen(),
                           ),
                         );
                       },
