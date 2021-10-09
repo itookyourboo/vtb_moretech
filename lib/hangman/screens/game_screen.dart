@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:moretech_vtb/assets/vtb_ui_colors_dark.dart';
 import 'package:moretech_vtb/assets/vtb_ui_typography.dart';
 import 'package:moretech_vtb/hangman/utilities/alphabet.dart';
@@ -9,9 +10,6 @@ import 'package:moretech_vtb/screen/games_page.dart';
 import 'package:moretech_vtb/screen/main_screen.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'dart:math';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:moretech_vtb/hangman/utilities/score_db.dart' as score_database;
-import 'package:moretech_vtb/hangman/utilities/user_scores.dart';
 
 class HangmanGameScreen extends StatefulWidget {
   HangmanGameScreen({required this.hangmanObject});
@@ -23,10 +21,10 @@ class HangmanGameScreen extends StatefulWidget {
 }
 
 class _HangmanGameScreenState extends State<HangmanGameScreen> {
-  final database = score_database.openDB();
   int lives = 3;
   Alphabet russianAlphabet = Alphabet();
   late String word;
+  late String meaning;
   late String hiddenWord;
   List<String> wordList = [];
   List<int> hintLetters = [];
@@ -50,17 +48,23 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
   }
 
   Widget createButton(index) {
+    ButtonStyle buttonStyle = ButtonStyle(
+      overlayColor: MaterialStateProperty.all(blue100),
+      shadowColor: MaterialStateProperty.all(blue100)
+    );
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 3.5, vertical: 6.0),
       child: Center(
         child: TextButton(
           child: Text(russianAlphabet.alphabet[index].toUpperCase(),
               style: TextStyle(
-                color: Colors.white
+                color: Colors.white,
               ),
           ),
-          onPressed:
-            buttonStatus[index] ? () => wordPress(index) : null,
+          style: buttonStyle,
+          onPressed: (){
+            wordPress(index);
+          }
         ),
       ),
     );
@@ -87,6 +91,10 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
     word = widget.hangmanObject.getWord();
 //    print
     print('this is word ' + word);
+    if (word != '') {
+      meaning = widget.hangmanObject.getMeaning();
+    }
+    // print(widget.hangmanObject.getMeaning(word));
     if (word.length != 0) {
       hiddenWord = widget.hangmanObject.getHiddenWord(word.length);
     } else {
@@ -100,6 +108,8 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
   }
 
   void wordPress(int index) {
+    if (buttonStatus[index] == false) return;
+
     if (lives == 0) {
       returnHomePage();
     }
@@ -133,15 +143,8 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
         finishedGame = true;
         lives -= 1;
         if (lives < 1) {
-          if (wordCount > 0) {
-            Score score = Score(
-                id: 1,
-                scoreDate: DateTime.now().toString(),
-                userScore: wordCount);
-            score_database.manipulateDatabase(score, database);
-          }
           Alert(
-              style: kGameOverAlertStyle,
+              style: GameOverAlertStyle,
               context: context,
               title: "Игра закончена!",
               desc: "Твой результат: $wordCount",
@@ -149,12 +152,13 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
                 DialogButton(
 //                  width: 20,
                   onPressed: () => returnHomePage(),
-                  child: Icon(
-                    MdiIcons.home,
+                  child: const Icon(
+                    Icons.home,
+                    color: Colors.white,
                     size: 30.0,
                   ),
 //                  width: 90,
-                  color: kDialogButtonColor,
+                  color: DialogButtonColor,
 //                  height: 50,
                 ),
                 DialogButton(
@@ -163,24 +167,25 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
                     newGame();
                     Navigator.pop(context);
                   },
-                  child: Icon(MdiIcons.refresh, size: 30.0),
+                  child: const Icon(Icons.refresh,color: Colors.white, size: 30.0),
 //                  width: 90,
-                  color: kDialogButtonColor,
+                  color: DialogButtonColor,
 //                  height: 20,
                 ),
               ]).show();
         } else {
           Alert(
             context: context,
-            style: kFailedAlertStyle,
+            style: FailedAlertStyle,
             type: AlertType.error,
             title: word,
-//            desc: "You Lost!",
+            desc: meaning,
             buttons: [
               DialogButton(
                 radius: BorderRadius.circular(10),
-                child: Icon(
-                  MdiIcons.arrowRightThick,
+                child: const Icon(
+                  Icons.arrow_forward_rounded,
+                  color: Colors.white,
                   size: 30.0,
                 ),
                 onPressed: () {
@@ -190,7 +195,7 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
                   });
                 },
                 width: 127,
-                color: kDialogButtonColor,
+                color: DialogButtonColor,
                 height: 52,
               ),
             ],
@@ -203,18 +208,24 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
         finishedGame = true;
         Alert(
           context: context,
-          style: kSuccessAlertStyle,
+          style: SuccessAlertStyle,
           type: AlertType.success,
           title: word,
 //          desc: "You guessed it right!",
-          desc: "- это ",
+          desc: meaning,
           buttons: [
             DialogButton(
               radius: BorderRadius.circular(10),
-              child: Icon(
-                MdiIcons.arrowRightThick,
+              child: const Icon(
+                Icons.arrow_forward_rounded,
+                color: Colors.white,
                 size: 30.0,
               ),
+              // child: const Icon(
+              //   MdiIcons.arrowRightThick,
+              //   color: Colors.white,
+              //   size: 30.0,
+              // ),
               onPressed: () {
                 setState(() {
                   wordCount += 1;
@@ -223,7 +234,7 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
                 });
               },
               width: 127,
-              color: kDialogButtonColor,
+              color: DialogButtonColor,
               height: 52,
             )
           ],
@@ -274,7 +285,7 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
                                         tooltip: 'Lives',
                                         splashColor: Colors.white,
                                         iconSize: 39,
-                                        icon: Icon(MdiIcons.heart),
+                                        icon: Icon(MdiIcons.heart, color: Colors.white),
                                         onPressed: () {},
                                       ),
                                     ),
@@ -305,14 +316,14 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
                             Container(
                               child: Text(
                                 wordCount == 1 ? "I" : '$wordCount',
-                                style: kWordCounterTextStyle,
+                                style: WordCounterTextStyle,
                               ),
                             ),
                             Container(
                               child: IconButton(
                                 tooltip: 'Подсказка',
                                 iconSize: 39,
-                                icon: Icon(MdiIcons.lightbulb),
+                                icon: Icon(MdiIcons.lightbulb, color: Colors.white),
                                 splashColor: Colors.white,
                                 onPressed: hintStatus
                                     ? () {

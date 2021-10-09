@@ -1,14 +1,19 @@
+import 'dart:convert';
 import 'dart:math';
 import 'package:flutter/services.dart' show rootBundle;
 
 class HangmanWords {
   int wordCounter = 0;
+  int wordNum = 0;
   List<int> _usedNumbers = [];
   List<String> _words = [];
+  List<String> _meanings = [];
 
   Future readWords() async {
     String fileText = await rootBundle.loadString('res/hangman_words.txt');
     _words = fileText.split('\n');
+    String fileText2 = await rootBundle.loadString('res/hangman_meanings.txt');
+    _meanings = fileText2.split('\n');
   }
 
   void resetWords() {
@@ -23,6 +28,7 @@ class HangmanWords {
     var rand = Random();
     int wordLength = _words.length;
     int randNumber = 1 + rand.nextInt(wordLength - 1);
+    wordNum = randNumber;
     bool notUnique = true;
     if (wordCounter - 1 == _words.length) {
       notUnique = false;
@@ -38,6 +44,10 @@ class HangmanWords {
       }
     }
     return '';
+  }
+
+  String getMeaning() {
+    return _meanings[wordNum];
   }
 
   String getHiddenWord(int wordLength) {
