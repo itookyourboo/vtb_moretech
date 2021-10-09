@@ -23,7 +23,7 @@ class GameScreen extends StatefulWidget {
 class _GameScreenState extends State<GameScreen> {
   final database = score_database.openDB();
   int lives = 5;
-  Alphabet englishAlphabet = Alphabet();
+  Alphabet russianAlphabet = Alphabet();
   late String word;
   late String hiddenWord;
   List<String> wordList = [];
@@ -38,7 +38,7 @@ class _GameScreenState extends State<GameScreen> {
   void newGame() {
     setState(() {
       widget.hangmanObject.resetWords();
-      englishAlphabet = Alphabet();
+      russianAlphabet = Alphabet();
       lives = 5;
       wordCount = 0;
       finishedGame = false;
@@ -52,7 +52,7 @@ class _GameScreenState extends State<GameScreen> {
       padding: EdgeInsets.symmetric(horizontal: 3.5, vertical: 6.0),
       child: Center(
         child: TextButton(
-          child: Text(englishAlphabet.alphabet[index].toUpperCase()),
+          child: Text(russianAlphabet.alphabet[index].toUpperCase()),
           onPressed:
             buttonStatus[index] ? () => wordPress(index) : null,
         ),
@@ -73,7 +73,7 @@ class _GameScreenState extends State<GameScreen> {
     resetGame = false;
     hintStatus = true;
     hangState = 0;
-    buttonStatus = List.generate(26, (index) {
+    buttonStatus = List.generate(33, (index) {
       return true;
     });
     wordList = [];
@@ -108,7 +108,7 @@ class _GameScreenState extends State<GameScreen> {
     bool check = false;
     setState(() {
       for (int i = 0; i < wordList.length; i++) {
-        if (wordList[i] == englishAlphabet.alphabet[index]) {
+        if (wordList[i] == russianAlphabet.alphabet[index]) {
           check = true;
           wordList[i] = '';
           hiddenWord = hiddenWord.replaceFirst(RegExp('_'), word[i], i);
@@ -316,7 +316,7 @@ class _GameScreenState extends State<GameScreen> {
                                     ? () {
                                         int rand = Random()
                                             .nextInt(hintLetters.length);
-                                        wordPress(englishAlphabet.alphabet
+                                        wordPress(russianAlphabet.alphabet
                                             .indexOf(
                                                 wordList[hintLetters[rand]]));
                                         hintStatus = false;
@@ -449,6 +449,29 @@ class _GameScreenState extends State<GameScreen> {
                       ),
                       TableCell(
                         child: createButton(25),
+                      ),
+                      TableCell(
+                        child: createButton(26),
+                      ),
+                      TableCell(
+                        child: createButton(27),
+                      ),
+                    ]),
+                    TableRow(children: [
+                      TableCell(
+                        child: createButton(28),
+                      ),
+                      TableCell(
+                        child: createButton(29),
+                      ),
+                      TableCell(
+                        child: createButton(30),
+                      ),
+                      TableCell(
+                        child: createButton(31),
+                      ),
+                      TableCell(
+                        child: createButton(32),
                       ),
                       TableCell(
                         child: Text(''),
