@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moretech_vtb/assets/vtb_ui_typography.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -24,25 +25,38 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
+      body: GridView.count(
+        crossAxisCount: 2,
+        children: const [
+          GameCard(text: 'Три в ряд'),
+          GameCard(text: 'Комбинатор'),
+          GameCard(text: 'Матрица'),
+          GameCard(text: 'Викторина'),
+          GameCard(text: 'Виселица')
+        ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
+    );
+  }
+}
+
+class GameCard extends StatelessWidget {
+  final String text;
+
+  const GameCard({Key? key, this.text = ''}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GridTile(
+        child: Card(
+          child: InkWell(
+              child: Center(
+                  child: Text(text, style: headline)
+              ),
+              onTap: () {
+                // Something happens
+              },
+          )
+        )
     );
   }
 }
