@@ -11,6 +11,8 @@ import 'package:moretech_vtb/screen/main_screen.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'dart:math';
 
+import 'package:url_launcher/url_launcher.dart';
+
 class HangmanGameScreen extends StatefulWidget {
   HangmanGameScreen({required this.hangmanObject});
 
@@ -28,6 +30,7 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
   late String hiddenWord;
   List<String> wordList = [];
   List<int> hintLetters = [];
+  // final List<String> keywordsInvestments
   late List<bool> buttonStatus;
   late bool hintStatus;
   int hangState = 0;
@@ -181,6 +184,24 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
             title: word,
             desc: meaning,
             buttons: [
+              DialogButton(
+                radius: BorderRadius.circular(10),
+                child: const Icon(
+                  Icons.menu_book_outlined,
+                  color: Colors.white,
+                  size: 30.0,
+                ),
+                onPressed: () {
+                  setState(() {
+                    Navigator.pop(context);
+                    initWords();
+                  });
+                  _launchURL();
+                },
+                width: 127,
+                color: DialogButtonColor,
+                height: 52,
+              ),
               DialogButton(
                 radius: BorderRadius.circular(10),
                 child: const Icon(
@@ -501,5 +522,14 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
         ),
       ),
     );
+  }
+}
+
+_launchURL() async {
+  const url = 'https://school.vtb.ru/lessons/';
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
   }
 }
