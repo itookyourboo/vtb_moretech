@@ -24,8 +24,8 @@ class _HomeScreenState extends State<HomeScreen> {
           Center(
             child: Container(
               margin: EdgeInsets.fromLTRB(8.0, 1.0, 8.0, 8.0),
-              child: Text(
-                'HANGMAN',
+              child: const Text(
+                'ВИСЕЛИЦА',
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 58.0,
@@ -55,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
 //                    width: 155,
                     height: 64,
                     child: ActionButton(
-                      buttonTitle: 'Start',
+                      buttonTitle: 'Начать',
                       onPress: () {
                         Navigator.push(
                           context,
@@ -75,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
 //                    width: 155,
                     height: 64,
                     child: ActionButton(
-                      buttonTitle: 'High Scores',
+                      buttonTitle: 'Рекорды',
                       onPress: () {
                         Navigator.push(
                           context,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moretech_vtb/assets/vtb_ui_colors_light.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 const kActionButtonTextStyle = TextStyle(
@@ -38,7 +39,7 @@ var kSuccessAlertStyle = AlertStyle(
   isCloseButton: false,
   isOverlayTapDismiss: false,
   animationDuration: Duration(milliseconds: 500),
-  backgroundColor: Color(0xFF2C1E68),
+  backgroundColor: blue90,
   alertBorder: RoundedRectangleBorder(
     borderRadius: BorderRadius.circular(10.0),
   ),
@@ -60,7 +61,7 @@ var kExitAlertStyle = AlertStyle(
     letterSpacing: 2.0,
   ),
   animationDuration: Duration(milliseconds: 500),
-  backgroundColor: Color(0xFF2C1E68),
+  backgroundColor: blue90,
   alertBorder: RoundedRectangleBorder(
     borderRadius: BorderRadius.circular(10.0),
   ),
@@ -77,7 +78,7 @@ var kGameOverAlertStyle = AlertStyle(
   isCloseButton: false,
   isOverlayTapDismiss: false,
   animationDuration: Duration(milliseconds: 450),
-  backgroundColor: Color(0xFF2C1E68),
+  backgroundColor: blue90,
   alertBorder: RoundedRectangleBorder(
     borderRadius: BorderRadius.circular(10.0),
   ),
@@ -88,7 +89,7 @@ var kGameOverAlertStyle = AlertStyle(
     letterSpacing: 1.5,
   ),
   descStyle: TextStyle(
-    color: Colors.lightBlue,
+    color: Colors.white,
     fontWeight: FontWeight.bold,
     fontSize: 25.0,
     letterSpacing: 1.5,
@@ -100,7 +101,7 @@ var kFailedAlertStyle = AlertStyle(
   isCloseButton: false,
   isOverlayTapDismiss: false,
   animationDuration: Duration(milliseconds: 450),
-  backgroundColor: Color(0xFF2C1E68),
+  backgroundColor: blue90,
   alertBorder: RoundedRectangleBorder(
     borderRadius: BorderRadius.circular(10.0),
   ),
