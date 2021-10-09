@@ -47,17 +47,23 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
   }
 
   Widget createButton(index) {
+    ButtonStyle buttonStyle = ButtonStyle(
+      overlayColor: MaterialStateProperty.all(blue100),
+      shadowColor: MaterialStateProperty.all(blue100)
+    );
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 3.5, vertical: 6.0),
       child: Center(
         child: TextButton(
           child: Text(russianAlphabet.alphabet[index].toUpperCase(),
               style: TextStyle(
-                color: Colors.white
+                color: Colors.white,
               ),
           ),
-          onPressed:
-            buttonStatus[index] ? () => wordPress(index) : null,
+          style: buttonStyle,
+          onPressed: () {
+            buttonStatus[index] ? () => wordPress(index) : null;
+          }
         ),
       ),
     );
@@ -131,7 +137,7 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
         lives -= 1;
         if (lives < 1) {
           Alert(
-              style: kGameOverAlertStyle,
+              style: GameOverAlertStyle,
               context: context,
               title: "Игра закончена!",
               desc: "Твой результат: $wordCount",
@@ -139,12 +145,12 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
                 DialogButton(
 //                  width: 20,
                   onPressed: () => returnHomePage(),
-                  child: Icon(
+                  child: const Icon(
                     MdiIcons.home,
                     size: 30.0,
                   ),
 //                  width: 90,
-                  color: kDialogButtonColor,
+                  color: DialogButtonColor,
 //                  height: 50,
                 ),
                 DialogButton(
@@ -155,14 +161,14 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
                   },
                   child: Icon(MdiIcons.refresh, size: 30.0),
 //                  width: 90,
-                  color: kDialogButtonColor,
+                  color: DialogButtonColor,
 //                  height: 20,
                 ),
               ]).show();
         } else {
           Alert(
             context: context,
-            style: kFailedAlertStyle,
+            style: FailedAlertStyle,
             type: AlertType.error,
             title: word,
 //            desc: "You Lost!",
@@ -180,7 +186,7 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
                   });
                 },
                 width: 127,
-                color: kDialogButtonColor,
+                color: DialogButtonColor,
                 height: 52,
               ),
             ],
@@ -193,7 +199,7 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
         finishedGame = true;
         Alert(
           context: context,
-          style: kSuccessAlertStyle,
+          style: SuccessAlertStyle,
           type: AlertType.success,
           title: word,
 //          desc: "You guessed it right!",
@@ -201,7 +207,7 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
           buttons: [
             DialogButton(
               radius: BorderRadius.circular(10),
-              child: Icon(
+              child: const Icon(
                 MdiIcons.arrowRightThick,
                 size: 30.0,
               ),
@@ -213,7 +219,7 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
                 });
               },
               width: 127,
-              color: kDialogButtonColor,
+              color: DialogButtonColor,
               height: 52,
             )
           ],
@@ -295,7 +301,7 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
                             Container(
                               child: Text(
                                 wordCount == 1 ? "I" : '$wordCount',
-                                style: kWordCounterTextStyle,
+                                style: WordCounterTextStyle,
                               ),
                             ),
                             Container(
