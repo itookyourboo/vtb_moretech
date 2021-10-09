@@ -10,8 +10,6 @@ import 'package:moretech_vtb/screen/main_screen.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'dart:math';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:moretech_vtb/hangman/utilities/score_db.dart' as score_database;
-import 'package:moretech_vtb/hangman/utilities/user_scores.dart';
 
 class HangmanGameScreen extends StatefulWidget {
   HangmanGameScreen({required this.hangmanObject});
@@ -23,7 +21,6 @@ class HangmanGameScreen extends StatefulWidget {
 }
 
 class _HangmanGameScreenState extends State<HangmanGameScreen> {
-  final database = score_database.openDB();
   int lives = 3;
   Alphabet russianAlphabet = Alphabet();
   late String word;
@@ -133,13 +130,6 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
         finishedGame = true;
         lives -= 1;
         if (lives < 1) {
-          if (wordCount > 0) {
-            Score score = Score(
-                id: 1,
-                scoreDate: DateTime.now().toString(),
-                userScore: wordCount);
-            score_database.manipulateDatabase(score, database);
-          }
           Alert(
               style: kGameOverAlertStyle,
               context: context,
