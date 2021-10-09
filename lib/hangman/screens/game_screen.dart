@@ -108,6 +108,8 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
   }
 
   void wordPress(int index) {
+    if (buttonStatus[index] == false) return;
+
     if (lives == 0) {
       returnHomePage();
     }
