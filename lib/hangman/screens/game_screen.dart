@@ -11,7 +11,7 @@ import 'package:moretech_vtb/screen/games_page.dart';
 import 'package:moretech_vtb/screen/main_screen.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'dart:math';
-import 'package:firebase_analytics/observer.dart';
+import 'package:launch_review/launch_review.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:url_launcher/url_launcher.dart';
@@ -247,9 +247,27 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
           style: SuccessAlertStyle,
           type: AlertType.success,
           title: word,
-//          desc: "You guessed it right!",
-          desc: meaning,
+          desc: meaning + " У тебя отлично получается, хочешь познакомиться с ВТБ поближе?",
           buttons: [
+            DialogButton(
+              radius: BorderRadius.circular(10),
+              child: const Icon(
+                Icons.account_balance_wallet_rounded,
+                color: Colors.white,
+                size: 30.0,
+              ),
+              onPressed: () {
+                setState(() {
+                  wordCount += 1;
+                  Navigator.pop(context);
+                  initWords();
+                });
+                launchInvestments();
+              },
+              width: 127,
+              color: DialogButtonColor,
+              height: 52,
+            ),
             DialogButton(
               radius: BorderRadius.circular(10),
               child: const Icon(
@@ -272,7 +290,7 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
               width: 127,
               color: DialogButtonColor,
               height: 52,
-            )
+            ),
           ],
         ).show();
       }
@@ -322,7 +340,7 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
                                     Container(
                                       padding: EdgeInsets.only(top: 0.5),
                                       child: IconButton(
-                                        tooltip: 'Lives',
+                                        tooltip: 'Жизни',
                                         splashColor: Colors.white,
                                         iconSize: 39,
                                         icon: Icon(MdiIcons.heart, color: Colors.white),
@@ -554,5 +572,9 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
     } else {
       throw 'Could not launch $url';
     }
+  }
+
+  void launchInvestments() async{
+    await LaunchReview.launch(androidAppId: "ru.vtb.invest");
   }
 }

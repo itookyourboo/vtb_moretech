@@ -7,7 +7,7 @@ TextStyle alertTitleStyle = largeTitle2.copyWith(
   color: Colors.white
 );
 
-TextStyle alertDescStyle = subtitle1.copyWith(
+TextStyle alertDescStyle = subtitle3.copyWith(
     color: Colors.white
 );
 
