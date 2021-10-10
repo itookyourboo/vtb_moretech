@@ -12,6 +12,7 @@ import 'package:moretech_vtb/screen/main_screen.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'dart:math';
 import 'package:firebase_analytics/observer.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:url_launcher/url_launcher.dart';
 
@@ -39,6 +40,7 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
   int wordCount = 0;
   bool finishedGame = false;
   bool resetGame = false;
+  late SharedPreferences prefs;
 
   Future<void> logStart() async {
     await FirebaseAnalytics().logLevelStart(levelName: "game");
@@ -204,6 +206,7 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
                   size: 30.0,
                 ),
                 onPressed: () {
+                  logVisitedLessons();
                   setState(() {
                     Navigator.pop(context);
                     initWords();
@@ -280,6 +283,10 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
   void initState() {
     super.initState();
     initWords();
+  }
+
+  Future<void> logVisitedLessons() async {
+    await FirebaseAnalytics().logEvent(name: "open_lessons");
   }
 
   @override
@@ -535,13 +542,17 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
       ),
     );
   }
-}
-
-_launchURL() async {
-  const url = 'https://school.vtb.ru/lessons/';
-  if (await canLaunch(url)) {
-    await launch(url);
-  } else {
-    throw 'Could not launch $url';
+  Future<void> initPreferences() async {
+    prefs = await SharedPreferences.getInstance();
+  }
+  _launchURL() async {
+    await initPreferences();
+    var url = 'https://school.vtb.ru/lessons/';
+    if (prefs.getInt("age")! > 18) url = "https://school.vtb.ru/materials/courses/";
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }

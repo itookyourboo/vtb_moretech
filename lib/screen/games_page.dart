@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:moretech_vtb/assets/vtb_ui_typography.dart' as VtbTypography;
 import 'package:moretech_vtb/hangman/screens/game_screen.dart';
@@ -52,6 +53,7 @@ class GameCard extends StatelessWidget {
                   child: Text(text, style: VtbTypography.headline)
               ),
               onTap: () {
+                logOpenGame(text);
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => routeScreen)
@@ -60,5 +62,9 @@ class GameCard extends StatelessWidget {
           )
         )
     );
+  }
+
+  Future<void> logOpenGame(String game) async {
+    await FirebaseAnalytics().logLevelStart(levelName: game);
   }
 }
