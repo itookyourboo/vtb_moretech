@@ -32,11 +32,20 @@ class _IntroScreenState extends State<IntroScreen> {
   late String _name;
   late int _age;
   late List<Widget> children;
+  late Widget vika;
 
   @override
   void initState() {
     super.initState();
-    children = [getAnimatedTextKitByStage(0)];
+    vika = getVika();
+    children = [vika, getAnimatedTextKitByStage(0)];
+  }
+
+  Widget getVika() {
+    return Padding(padding: EdgeInsets.all(16),
+        child: Image.asset('assets/vika.png',
+        height: 100,
+        fit: BoxFit.fill));
   }
 
   @override
@@ -76,7 +85,7 @@ class _IntroScreenState extends State<IntroScreen> {
           _stage = 1;
           _name = input;
           texts[1][0] += '$_name!';
-          children = [getAnimatedTextKitByStage(_stage)];
+          children = [vika, getAnimatedTextKitByStage(_stage)];
         });
       });
     } else if (stage == 1) {
@@ -84,7 +93,7 @@ class _IntroScreenState extends State<IntroScreen> {
         setState(() {
           _stage = 2;
           _age = input;
-          children = [getAnimatedTextKitByStage(_stage)];
+          children = [vika, getAnimatedTextKitByStage(_stage)];
         });
       });
     } else if (stage == 2) {
