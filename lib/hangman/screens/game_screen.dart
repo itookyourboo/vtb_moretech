@@ -283,6 +283,7 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
               onPressed: () {
                 setState(() {
                   wordCount += 1;
+                  updatePrefsProgress(1);
                   Navigator.pop(context);
                   initWords();
                 });
@@ -576,5 +577,10 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
 
   void launchInvestments() async{
     await LaunchReview.launch(androidAppId: "ru.vtb.invest");
+  }
+
+  void updatePrefsProgress(int progress) {
+    initPreferences();
+    prefs.setInt("progress_v", prefs.getInt("progress_v") != null ? prefs.getInt("progress_v")! + progress : progress);
   }
 }
