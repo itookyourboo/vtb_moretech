@@ -100,13 +100,6 @@ class _IntroScreenState extends State<IntroScreen> {
       return Text('That`s all');
     }
   }
-
-  Widget getContentByStage(int stage) {
-    return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: children);
-  }
 }
 
 class NameForm extends StatefulWidget {
