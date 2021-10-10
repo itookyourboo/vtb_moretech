@@ -4,7 +4,7 @@ import 'package:moretech_vtb/database/entity.dart';
 List<Entity> entities = [];
 
 List<Entity> getEntities() {
-  return List.empty();
+  return entities;
 }
 
 Future readEntities() async {
