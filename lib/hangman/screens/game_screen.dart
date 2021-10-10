@@ -1,4 +1,5 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -7,11 +8,11 @@ import 'package:moretech_vtb/assets/vtb_ui_typography.dart';
 import 'package:moretech_vtb/hangman/utilities/alphabet.dart';
 import 'package:moretech_vtb/hangman/utilities/constants.dart';
 import 'package:moretech_vtb/hangman/utilities/hangman_words.dart';
-import 'package:moretech_vtb/screen/games_page.dart';
 import 'package:moretech_vtb/screen/main_screen.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'dart:math';
-import 'package:firebase_analytics/observer.dart';
+import 'package:launch_review/launch_review.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:url_launcher/url_launcher.dart';
 
@@ -39,6 +40,7 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
   int wordCount = 0;
   bool finishedGame = false;
   bool resetGame = false;
+  late SharedPreferences prefs;
 
   Future<void> logStart() async {
     await FirebaseAnalytics().logLevelStart(levelName: "game");
@@ -122,6 +124,7 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
   }
 
   void wordPress(int index) {
+    // Crashlytics.instance.crash();
     logUpdate();
     if (buttonStatus[index] == false) return;
 
@@ -204,6 +207,7 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
                   size: 30.0,
                 ),
                 onPressed: () {
+                  logVisitedLessons();
                   setState(() {
                     Navigator.pop(context);
                     initWords();
@@ -244,9 +248,27 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
           style: SuccessAlertStyle,
           type: AlertType.success,
           title: word,
-//          desc: "You guessed it right!",
-          desc: meaning,
+          desc: meaning + " У тебя отлично получается, хочешь познакомиться с ВТБ поближе?",
           buttons: [
+            DialogButton(
+              radius: BorderRadius.circular(10),
+              child: const Icon(
+                Icons.account_balance_wallet_rounded,
+                color: Colors.white,
+                size: 30.0,
+              ),
+              onPressed: () {
+                setState(() {
+                  wordCount += 1;
+                  Navigator.pop(context);
+                  initWords();
+                });
+                launchInvestments();
+              },
+              width: 127,
+              color: DialogButtonColor,
+              height: 52,
+            ),
             DialogButton(
               radius: BorderRadius.circular(10),
               child: const Icon(
@@ -262,6 +284,7 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
               onPressed: () {
                 setState(() {
                   wordCount += 1;
+                  updatePrefsProgress(1);
                   Navigator.pop(context);
                   initWords();
                 });
@@ -269,7 +292,7 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
               width: 127,
               color: DialogButtonColor,
               height: 52,
-            )
+            ),
           ],
         ).show();
       }
@@ -280,6 +303,10 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
   void initState() {
     super.initState();
     initWords();
+  }
+
+  Future<void> logVisitedLessons() async {
+    await FirebaseAnalytics().logEvent(name: "open_lessons");
   }
 
   @override
@@ -315,7 +342,7 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
                                     Container(
                                       padding: EdgeInsets.only(top: 0.5),
                                       child: IconButton(
-                                        tooltip: 'Lives',
+                                        tooltip: 'Жизни',
                                         splashColor: Colors.white,
                                         iconSize: 39,
                                         icon: Icon(MdiIcons.heart, color: Colors.white),
@@ -535,13 +562,26 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
       ),
     );
   }
-}
+  Future<void> initPreferences() async {
+    prefs = await SharedPreferences.getInstance();
+  }
+  _launchURL() async {
+    await initPreferences();
+    var url = 'https://school.vtb.ru/lessons/';
+    if (prefs.getInt("age")! > 18) url = "https://school.vtb.ru/materials/courses/";
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 
-_launchURL() async {
-  const url = 'https://school.vtb.ru/lessons/';
-  if (await canLaunch(url)) {
-    await launch(url);
-  } else {
-    throw 'Could not launch $url';
+  void launchInvestments() async{
+    await LaunchReview.launch(androidAppId: "ru.vtb.invest");
+  }
+
+  void updatePrefsProgress(int progress) {
+    initPreferences();
+    prefs.setInt("progress_v", prefs.getInt("progress_v") != null ? prefs.getInt("progress_v")! + progress : progress);
   }
 }

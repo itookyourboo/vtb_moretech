@@ -14,7 +14,7 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 1;
-  static const List<StatelessWidget> _widgets = <StatelessWidget>[
+  static const List<Widget> _widgets = <Widget>[
     ProgressPage(),
     GamesPage(),
     ProfilePage()

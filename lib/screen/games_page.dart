@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:moretech_vtb/assets/vtb_ui_typography.dart' as VtbTypography;
 import 'package:moretech_vtb/combinator/screens/game_screen.dart';
@@ -47,12 +48,23 @@ class GameCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GridTile(
         child: Card(
-            child: InkWell(
-      child: Center(child: Text(text, style: VtbTypography.headline)),
-      onTap: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => routeScreen));
-      },
-    )));
+          child: InkWell(
+              child: Center(
+                  child: Text(text, style: VtbTypography.headline)
+              ),
+              onTap: () {
+                logOpenGame(text);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => routeScreen)
+                );
+              },
+          )
+        )
+    );
+  }
+
+  Future<void> logOpenGame(String game) async {
+    await FirebaseAnalytics().logLevelStart(levelName: game);
   }
 }
