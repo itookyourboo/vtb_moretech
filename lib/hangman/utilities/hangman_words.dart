@@ -11,7 +11,7 @@ class HangmanWords {
 
   Future readWords() async {
     String fileText = await rootBundle.loadString('res/hangman_words.txt');
-    _words = fileText.split('\n');
+    _words = fileText.split('\n').map((e) => e.trim()).toList();
     String fileText2 = await rootBundle.loadString('res/hangman_meanings.txt');
     _meanings = fileText2.split('\n');
   }

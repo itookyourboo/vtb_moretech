@@ -1,15 +1,15 @@
 class Entity {
 
-  int id;
-  String title;
-  String body;
-  String type;
-  String theme;
-  bool targetChild;
-  bool targetYoung;
-  bool targetMature;
-  String service;
-  bool viewed;
+  final int id;
+  final String title;
+  final String body;
+  final String type;
+  final String theme;
+  final bool targetChild;
+  final bool targetYoung;
+  final bool targetMature;
+  final String service;
+  final bool viewed;
 
   Entity(
       this.id,
