@@ -48,6 +48,7 @@ dependencies:
   # Add the dependency for the FlutterFire plugin for Google Analytics
   firebase_analytics: ^5.0.2
   launch_review: ^3.0.1
+  firebase_crashlytics: ^0.1.4+1
 
 dev_dependencies:
   flutter_test:

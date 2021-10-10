@@ -1,4 +1,5 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -7,7 +8,6 @@ import 'package:moretech_vtb/assets/vtb_ui_typography.dart';
 import 'package:moretech_vtb/hangman/utilities/alphabet.dart';
 import 'package:moretech_vtb/hangman/utilities/constants.dart';
 import 'package:moretech_vtb/hangman/utilities/hangman_words.dart';
-import 'package:moretech_vtb/screen/games_page.dart';
 import 'package:moretech_vtb/screen/main_screen.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'dart:math';
@@ -124,6 +124,7 @@ class _HangmanGameScreenState extends State<HangmanGameScreen> {
   }
 
   void wordPress(int index) {
+    // Crashlytics.instance.crash();
     logUpdate();
     if (buttonStatus[index] == false) return;
 
